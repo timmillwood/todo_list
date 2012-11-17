@@ -1,2 +1,4 @@
-todo_list
+Todo list
 =========
+
+An example Sinatra todo list application.
