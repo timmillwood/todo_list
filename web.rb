@@ -13,5 +13,17 @@ end
 DataMapper.finalize.auto_upgrade!
 
 get '/' do
+  @items = Item.all(:order => :created.desc)
+  if @items.size == 0
+    redirect '/new'
+  end
   erb :index
+end
+
+get '/new' do
+  
+end
+
+post '/new' do
+  
 end
