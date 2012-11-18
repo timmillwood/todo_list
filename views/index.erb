@@ -1,3 +1,12 @@
-<% @items.each do |item| %>
-  
-<% end %>
+<ul id="todo-list" class="unstyled">
+    <% @items.each do |item| %>
+      <li>
+        <span><%= item[:content] %></span>
+        <span>
+          <a href="#" class="btn">Done</a>
+          <a href="/delete/<%= item[:id] %>" class="btn btn-danger">Delete</a>
+        </span>
+      </li>
+    <% end %>
+</ul>
+<a href="/new" class="btn btn-primary">Add todo item</a>

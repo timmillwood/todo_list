@@ -1,0 +1,4 @@
+<form action="/new" class="form-inline" method="POST">
+  <input type="text" placeholder="Todo item" name="content">
+  <button type="submit" class="btn">Post</button>
+</form>

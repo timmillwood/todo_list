@@ -12,18 +12,18 @@ class Item
 end
 DataMapper.finalize.auto_upgrade!
 
-get '/' do
+get '/?' do
   @items = Item.all(:order => :created.desc)
-  if @items.size == 0
-    redirect '/new'
-  end
+  redirect '/new' if @items.empty?
   erb :index
 end
 
-get '/new' do
-  
+get '/new/?' do
+  @title = "Add todo item"
+  erb :new
 end
 
-post '/new' do
-  
+post '/new/?' do
+  Item.create(:content => params[:content], :created => Time.now)
+  redirect '/'
 end
