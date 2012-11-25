@@ -27,3 +27,8 @@ post '/new/?' do
   Item.create(:content => params[:content], :created => Time.now)
   redirect '/'
 end
+
+get '/delete/:id/?' do
+  @item = Item.first(:id => params[:id])
+  
+end

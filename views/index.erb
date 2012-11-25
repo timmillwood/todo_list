@@ -2,7 +2,7 @@
     <% @items.each do |item| %>
       <li>
         <span><%= item[:content] %></span>
-        <span>
+        <span class="pull-right">
           <a href="#" class="btn">Done</a>
           <a href="/delete/<%= item[:id] %>" class="btn btn-danger">Delete</a>
         </span>
