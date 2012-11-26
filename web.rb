@@ -28,7 +28,22 @@ post '/new/?' do
   redirect '/'
 end
 
-get '/delete/:id/?' do
+get '/done/:id/?' do
   @item = Item.first(:id => params[:id])
   
+end
+
+get '/delete/:id/?' do
+  @item = Item.first(:id => params[:id])
+  erb :delete
+end
+
+post '/delete/:id/?' do
+  if params.has_key?("ok")
+    item = Item.first(:id => params[:id])
+    item.destroy
+    redirect '/'
+  else
+    redirect '/'
+  end
 end
