@@ -5,16 +5,17 @@ $(document).ready(function() {
       type: "POST",
       url: "/done",
       data: { id: item_id },
-      complete: function(data) {
-        if($("#" + item_id + " a.done").text() == 'Done') {
-          $("#" + item_id + " a.done").text('Not done')
-          $("#" + item_id + " .item").wrapInner("<del>");
+      }).done(function(data) {
+        if(data.status == 'done') {
+          $("#" + data.id + " a.done").text('Not done')
+          $("#" + data.id + " .item").wrapInner("<del>");
         }
         else {
-          $("#" + item_id + " a.done").text('Done')
-          $("#" + item_id + " .item").text($("#" + item_id + " .item del").text());
+          $("#" + data.id + " a.done").text('Done')
+          $("#" + data.id + " .item").html(function(i, h) {
+            return h.replace("<del>", "");
+          });
         }
-      }
     });
     e.preventDefault();
   });

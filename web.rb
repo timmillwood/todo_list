@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'data_mapper'
+require 'json'
 
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/todo_list.db")
 class Item
@@ -34,7 +35,7 @@ post '/done/?' do
   item.save
   content_type 'application/json'
   value = item.done ? 'done' : 'not done'
-  "{ #{params[:id]} : #{value} }"
+  { :id => params[:id], :status => value }.to_json
 end
 
 get '/delete/:id/?' do
