@@ -28,9 +28,13 @@ post '/new/?' do
   redirect '/'
 end
 
-get '/done/:id/?' do
-  @item = Item.first(:id => params[:id])
-  
+post '/done/?' do
+  item = Item.first(:id => params[:id])
+  item.done = !item.done
+  item.save
+  content_type 'application/json'
+  value = item.done ? 'done' : 'not done'
+  "{ #{params[:id]} : #{value} }"
 end
 
 get '/delete/:id/?' do

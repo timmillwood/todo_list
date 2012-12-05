@@ -1,9 +1,9 @@
 <ul id="todo-list" class="unstyled">
     <% @items.each do |item| %>
-      <li>
-        <span><%= item[:content] %></span>
+      <li id="<%= item[:id] %>">
+        <span class="item"><%= item[:done] ? "<del>#{item[:content]}</del>" : item[:content] %></span>
         <span class="pull-right">
-          <a href="#" class="btn">Done</a>
+          <a href="#" class="btn done"><%= item[:done] ? "Not done" : "Done" %></a>
           <a href="/delete/<%= item[:id] %>" class="btn btn-danger">Delete</a>
         </span>
       </li>
