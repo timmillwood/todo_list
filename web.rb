@@ -30,7 +30,7 @@ post '/new/?' do
 end
 
 post '/done/?' do
-  item = Item.first(:id => params[:id])
+  item = Item.first(:id => params[:id].to_i)
   item.done = !item.done
   item.save
   content_type 'application/json'
@@ -39,13 +39,13 @@ post '/done/?' do
 end
 
 get '/delete/:id/?' do
-  @item = Item.first(:id => params[:id])
+  @item = Item.first(:id => params[:id].to_i)
   erb :delete
 end
 
 post '/delete/:id/?' do
   if params.has_key?("ok")
-    item = Item.first(:id => params[:id])
+    item = Item.first(:id => params[:id].to_i)
     item.destroy
     redirect '/'
   else
